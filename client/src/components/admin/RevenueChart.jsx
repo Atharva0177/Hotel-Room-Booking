@@ -20,8 +20,8 @@ export const RevenueChart = ({ rows = [] }) => {
 
   if (!data.length) {
     return (
-      <div className="h-80 rounded-xl border border-gold/30 bg-black/20 p-4">
-        <div className="flex h-full items-center justify-center text-sm text-ivory/70">
+      <div className="h-48 sm:h-60 md:h-72 rounded-lg border border-gold/30 bg-black/20 p-2 sm:p-2.5 md:p-3 lg:p-4">
+        <div className="flex h-full items-center justify-center text-xs sm:text-sm text-ivory/70">
           No revenue data yet. Create bookings to see trend lines.
         </div>
       </div>
@@ -29,8 +29,8 @@ export const RevenueChart = ({ rows = [] }) => {
   }
 
   return (
-    <div className="h-80 rounded-xl border border-gold/30 bg-black/20 p-4">
-      <ResponsiveContainer>
+    <div className="h-48 sm:h-60 md:h-72 rounded-lg border border-gold/30 bg-black/20 p-2 sm:p-2.5 md:p-3 lg:p-4 overflow-hidden">
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <XAxis dataKey="date" stroke="#c9a96e" />
           <YAxis stroke="#c9a96e" />

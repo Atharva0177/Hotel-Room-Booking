@@ -60,11 +60,11 @@ export const AdminDashboard = () => {
   })();
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[200px_1fr] pb-16">
+    <section className="grid gap-2 sm:gap-3 md:gap-6 grid-cols-1 md:grid-cols-[auto_1fr] pb-16 px-2 sm:px-3 md:px-4 w-full overflow-x-hidden">
       <AdminSidebar />
-      <div className="space-y-4">
-        <h1 className="font-display text-5xl text-gold">Admin Dashboard</h1>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="space-y-2 sm:space-y-3 md:space-y-6 min-w-0">
+        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gold">Admin Dashboard</h1>
+        <div className="grid gap-1.5 sm:gap-2 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <StatsCard label="Total Bookings" value={stats?.totalBookings || 0} />
           <StatsCard label="Revenue" value={`₹${Math.round(stats?.totalRevenue || 0)}`} />
           <StatsCard label="Guests" value={stats?.totalGuests || 0} />
@@ -72,62 +72,64 @@ export const AdminDashboard = () => {
         </div>
         <RevenueChart rows={revenue} />
         <div className="overflow-hidden rounded-xl border border-gold/30 bg-black/20">
-          <div className="border-b border-gold/20 px-4 py-3 text-lg font-medium text-gold">Property Map</div>
+          <div className="border-b border-gold/20 px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-lg font-medium text-gold">Property Map</div>
           <iframe
             src={mapEmbedUrl}
             title="Property Map"
-            className="h-72 w-full"
+            className="h-48 sm:h-60 md:h-72 w-full"
             loading="lazy"
           />
         </div>
-        <div className="grid gap-3 rounded-xl border border-gold/30 bg-black/20 p-4 md:grid-cols-3">
-          <label className="text-sm text-ivory/80">
+        <div className="grid gap-2 sm:gap-3 rounded-xl border border-gold/30 bg-black/20 p-2 sm:p-3 md:p-4 grid-cols-2 md:grid-cols-3">
+          <label className="text-xs sm:text-sm text-ivory/80">
             From
             <input
               type="date"
               value={calendarRange.from}
               onChange={(e) => setCalendarRange((v) => ({ ...v, from: e.target.value }))}
-              className="mt-1 block w-full rounded border border-gold/30 bg-transparent px-2 py-2"
+              className="mt-1 block w-full rounded border border-gold/30 bg-transparent px-2 py-1 sm:py-2 text-xs sm:text-sm"
             />
           </label>
-          <label className="text-sm text-ivory/80">
+          <label className="text-xs sm:text-sm text-ivory/80">
             To
             <input
               type="date"
               value={calendarRange.to}
               onChange={(e) => setCalendarRange((v) => ({ ...v, to: e.target.value }))}
-              className="mt-1 block w-full rounded border border-gold/30 bg-transparent px-2 py-2"
+              className="mt-1 block w-full rounded border border-gold/30 bg-transparent px-2 py-1 sm:py-2 text-xs sm:text-sm"
             />
           </label>
-          <div className="flex items-end">
-            <button onClick={loadCalendar} className="rounded border border-gold bg-gold px-4 py-2 text-auburn">
-              Refresh Calendar
+          <div className="col-span-2 md:col-span-1 flex items-end">
+            <button onClick={loadCalendar} className="w-full rounded border border-gold bg-gold px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm text-auburn font-semibold">
+              Refresh
             </button>
           </div>
         </div>
         <BookingCalendarGrid calendar={calendar} />
         <div className="overflow-x-auto rounded-xl border border-gold/30 bg-black/20">
-          <div className="border-b border-gold/20 px-4 py-3 text-lg font-medium text-gold">Recent Bookings</div>
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="text-left text-ivory/70">
-                <th className="px-4 py-2">Booking Code</th>
-                <th className="px-4 py-2">Guest</th>
-                <th className="px-4 py-2">Status</th>
-                <th className="px-4 py-2">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentBookings.map((booking) => (
-                <tr key={booking.id} className="border-t border-gold/20">
-                  <td className="px-4 py-2">{booking.bookingCode}</td>
-                  <td className="px-4 py-2">{booking.guestName}</td>
-                  <td className="px-4 py-2">{booking.status}</td>
-                  <td className="px-4 py-2">₹{Math.round(booking.finalPrice)}</td>
+          <div className="border-b border-gold/20 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-lg font-medium text-gold">Recent Bookings</div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-xs sm:text-sm">
+              <thead>
+                <tr className="text-left text-ivory/70 bg-black/30">
+                  <th className="px-2 sm:px-4 py-2">Code</th>
+                  <th className="px-2 sm:px-4 py-2">Guest</th>
+                  <th className="px-2 sm:px-4 py-2">Status</th>
+                  <th className="px-2 sm:px-4 py-2">Amount</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {recentBookings.map((booking) => (
+                  <tr key={booking.id} className="border-t border-gold/20 hover:bg-gold/5">
+                    <td className="px-2 sm:px-4 py-2">{booking.bookingCode}</td>
+                    <td className="px-2 sm:px-4 py-2">{booking.guestName}</td>
+                    <td className="px-2 sm:px-4 py-2">{booking.status}</td>
+                    <td className="px-2 sm:px-4 py-2">₹{Math.round(booking.finalPrice)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
