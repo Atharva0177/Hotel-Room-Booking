@@ -125,7 +125,13 @@ const refresh = async (req, res, next) => {
       return res.status(401).json({ success: false, message: 'Invalid refresh token' });
     }
 
-    const payload = verifyRefreshToken(token);
+    let payload;
+    try {
+      payload = verifyRefreshToken(token);
+    } catch (tokenError) {
+      return res.status(401).json({ success: false, message: 'Token verification failed' });
+    }
+
     const user = await prisma.user.findUnique({ where: { id: payload.id } });
     if (!user) {
       return res.status(401).json({ success: false, message: 'User not found' });
