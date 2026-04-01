@@ -3,7 +3,7 @@ import { useRooms } from '../../hooks/useRooms';
 import { RoomCard } from '../rooms/RoomCard';
 
 export const FeaturedRooms = () => {
-  const { featuredRooms, fetchFeaturedRooms } = useRooms();
+  const { featuredRooms, fetchFeaturedRooms, loading, error } = useRooms();
 
   useEffect(() => {
     fetchFeaturedRooms();
@@ -18,10 +18,14 @@ export const FeaturedRooms = () => {
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-3">
-        {featuredRooms.length ? (
+        {loading ? (
+          <p className="rounded-xl border border-gold/20 bg-black/20 p-6 text-ivory/70 md:col-span-3">Loading rooms...</p>
+        ) : error ? (
+          <p className="rounded-xl border border-red-300/40 bg-red-500/10 p-6 text-red-200 md:col-span-3">{error}</p>
+        ) : featuredRooms.length ? (
           featuredRooms.map((room) => <RoomCard key={room.id} room={room} />)
         ) : (
-          <p className="rounded-xl border border-gold/20 bg-black/20 p-6 text-ivory/70 md:col-span-3">No featured rooms yet.</p>
+          <p className="rounded-xl border border-gold/20 bg-black/20 p-6 text-ivory/70 md:col-span-3">No rooms found yet.</p>
         )}
       </div>
     </section>

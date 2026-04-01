@@ -19,9 +19,19 @@ export const useRoomStore = create((set) => ({
     }
   },
   fetchFeaturedRooms: async () => {
-    const { data } = await api.get('/rooms', { params: { sort: 'newest' } });
-    const featured = data.data.rooms.filter((room) => room.isFeatured).slice(0, 6);
-    set({ featuredRooms: featured });
+    set({ loading: true, error: null });
+    try {
+      const { data } = await api.get('/rooms', { params: { sort: 'newest', limit: 24 } });
+      const rooms = data?.data?.rooms || [];
+      const featured = rooms.filter((room) => room.isFeatured).slice(0, 6);
+      set({ featuredRooms: featured.length ? featured : rooms.slice(0, 6), loading: false });
+    } catch (error) {
+      set({
+        featuredRooms: [],
+        loading: false,
+        error: error.response?.data?.message || 'Failed to load featured rooms',
+      });
+    }
   },
   fetchRoomBySlug: async (slug) => {
     set({ loading: true, error: null });
