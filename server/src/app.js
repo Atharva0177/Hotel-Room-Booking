@@ -49,6 +49,23 @@ app.get('/api/health', (_req, res) => {
   res.json({ success: true, message: 'Aurelia API is healthy' });
 });
 
+app.get('/api', (_req, res) => {
+  res.json({
+    success: true,
+    message: 'Aurelia API',
+    endpoints: {
+      health: '/health',
+      apiHealth: '/api/health',
+      rooms: '/api/rooms',
+      auth: '/api/auth',
+      bookings: '/api/bookings',
+      amenities: '/api/amenities',
+      gallery: '/api/gallery',
+      about: '/api/about',
+    },
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomsRoutes);
 app.use('/api/bookings', bookingsRoutes);
