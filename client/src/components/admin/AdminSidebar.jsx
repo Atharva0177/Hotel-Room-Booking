@@ -12,17 +12,17 @@ const links = [
 ];
 
 export const AdminSidebar = () => (
-  <aside className="self-start rounded-xl border border-gold/30 bg-black/20 p-3 md:p-4">
-    <div className="flex gap-2 overflow-x-auto md:block md:overflow-visible">
+  <aside className="w-full rounded-full border border-gold/30 bg-black/20 p-2 sm:p-2.5">
+    <div className="flex gap-1 sm:gap-2 overflow-x-auto [-webkit-overflow-scrolling:touch]">
     {links.map((item) => (
       <NavLink
         key={item.to}
         to={item.to}
         end
         className={({ isActive }) =>
-          `mb-0 mr-1 block shrink-0 rounded px-3 py-2 text-sm uppercase tracking-wider transition md:mb-1 md:mr-0 ${
+          `flex-shrink-0 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm uppercase tracking-wider transition whitespace-nowrap ${
             isActive
-              ? 'bg-gold/20 text-gold'
+              ? 'bg-gold/20 text-gold font-semibold'
               : 'text-ivory/80 hover:bg-gold/10 hover:text-gold'
           }`
         }
