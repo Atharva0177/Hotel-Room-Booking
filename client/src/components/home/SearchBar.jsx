@@ -20,7 +20,7 @@ export const SearchBar = () => {
 
   return (
     <form onSubmit={onSubmit} className="-mt-6 sm:-mt-8 rounded-lg sm:rounded-2xl bg-gradient-to-br from-auburn via-auburn/95 to-auburn/90 p-3 sm:p-4 shadow-2xl border border-gold/20 backdrop-blur-sm">
-      <div className="grid gap-2 sm:gap-3 md:grid-cols-2 lg:grid-cols-6">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-2 lg:grid-cols-6">
         {/* Check-in Date */}
         <div className="lg:col-span-1">
           <label className="flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-gold/80 mb-1">
