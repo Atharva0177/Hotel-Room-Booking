@@ -20,7 +20,7 @@ export const PageLayout = ({ children }) => {
         Skip to content
       </a>
       <Navbar />
-      <main id="main-content" className="mx-auto max-w-7xl px-4 pt-24 md:px-8">
+      <main id="main-content" className="mx-auto max-w-7xl px-3 sm:px-4 pt-20 sm:pt-24 md:px-8">
         {children}
       </main>
       <Footer />

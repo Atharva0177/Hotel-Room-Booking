@@ -19,8 +19,8 @@ export const Navbar = () => {
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition ${scrolled ? 'bg-auburn/85 shadow-lg backdrop-blur-xl' : 'bg-transparent'}`}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 text-ivory md:px-8">
-        <Link to="/" className="font-display text-2xl tracking-wide text-gold">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-3 py-3 text-ivory sm:px-4 md:px-8">
+        <Link to="/" className="font-display text-xl sm:text-2xl tracking-wide text-gold">
           {settings.navbarBrand}
         </Link>
 
@@ -34,7 +34,7 @@ export const Navbar = () => {
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `px-3 py-2 text-sm font-medium uppercase tracking-widest transition ${
+                `px-2 py-2 text-xs sm:text-sm font-medium uppercase tracking-widest transition ${
                   isActive ? 'text-gold' : 'text-ivory/80 hover:text-gold'
                 }`
               }

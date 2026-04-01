@@ -1,10 +1,10 @@
 import { AMENITIES } from '../../constants';
 
 export const Amenities = () => (
-  <section className="premium-panel mt-16 rounded-2xl border border-gold/20 p-6 md:p-8">
-    <p className="font-accent text-xs uppercase tracking-[0.2em] text-gold/80">Signature Experience</p>
-    <h2 className="font-display text-4xl text-gold">Hotel Amenities</h2>
-    <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+  <section className=\"premium-panel mt-12 sm:mt-16 rounded-xl sm:rounded-2xl border border-gold/20 p-4 sm:p-6 md:p-8\">
+    <p className=\"font-accent text-xs uppercase tracking-[0.2em] text-gold/80\">Signature Experience</p>
+    <h2 className=\"font-display text-3xl sm:text-4xl text-gold\">Hotel Amenities</h2>
+    <div className=\"mt-4 sm:mt-6 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4\">
       {AMENITIES.map((item, index) => (
         <div
           key={item}
