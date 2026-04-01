@@ -32,7 +32,20 @@ app.use(cookieParser());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    message: 'Aurelia backend is running',
+    health: '/health',
+    apiHealth: '/api/health',
+  });
+});
+
 app.get('/health', (_req, res) => {
+  res.json({ success: true, message: 'Aurelia API is healthy' });
+});
+
+app.get('/api/health', (_req, res) => {
   res.json({ success: true, message: 'Aurelia API is healthy' });
 });
 
