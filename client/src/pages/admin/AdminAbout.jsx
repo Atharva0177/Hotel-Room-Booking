@@ -219,5 +219,6 @@ export const AdminAbout = () => {
         </div>
       </div>
     </motion.div>
+      </section>
   );
 };
