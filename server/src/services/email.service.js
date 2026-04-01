@@ -12,12 +12,13 @@ const resolveFromAddress = () => {
   return `Aurelia Grand Hotel <${smtpUser}>`;
 };
 
-const sendEmail = async ({ to, subject, html }) => {
+const sendEmail = async ({ to, subject, html, attachments = [] }) => {
   const info = await transporter.sendMail({
     from: resolveFromAddress(),
     to,
     subject,
     html,
+    attachments,
   });
 
   console.log(`Email sent to ${to} | messageId=${info.messageId}`);

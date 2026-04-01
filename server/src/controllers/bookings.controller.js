@@ -3,7 +3,7 @@ const { BookingStatus } = require('@prisma/client');
 const { buildInvoiceBuffer } = require('../services/pdf.service');
 const { sendEmail } = require('../services/email.service');
 
-const sendBookingNotification = async ({ booking, subject, title, note }) => {
+const sendBookingNotification = async ({ booking, subject, title, note, attachments = [] }) => {
   try {
     const roomName = booking.room?.name || 'Aurelia Room';
     await sendEmail({
@@ -26,6 +26,7 @@ const sendBookingNotification = async ({ booking, subject, title, note }) => {
           <p>Thank you for choosing Aurelia Grand Hotel.</p>
         </div>
       `,
+      attachments,
     });
   } catch (error) {
     // Do not fail booking workflows because of SMTP issues.
@@ -250,12 +251,21 @@ const updateBookingStatus = async (req, res, next) => {
     });
 
     if (status === 'CONFIRMED') {
+      // Generate invoice PDF and attach to confirmation email
+      const invoiceBuffer = await buildInvoiceBuffer(booking);
       await sendBookingNotification({
         booking,
         subject: `Booking Confirmed - ${booking.bookingCode}`,
         title: 'Your Booking Is Confirmed',
         note:
-          'Your reservation has been approved by the hotel and is now confirmed. Payment will be collected at the hotel front desk during check-in.',
+          'Your reservation has been approved by the hotel and is now confirmed. Payment will be collected at the hotel front desk during check-in. Please find your invoice attached.',
+        attachments: [
+          {
+            filename: `Invoice-${booking.bookingCode}.pdf`,
+            content: invoiceBuffer,
+            contentType: 'application/pdf',
+          },
+        ],
       });
     } else if (status === 'PENDING') {
       await sendBookingNotification({
