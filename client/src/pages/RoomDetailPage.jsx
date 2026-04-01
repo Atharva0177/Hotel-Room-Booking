@@ -6,7 +6,6 @@ import { RoomGallery } from '../components/rooms/RoomGallery';
 import { DateRangePicker } from '../components/ui/DateRangePicker';
 import { GuestSelector } from '../components/ui/GuestSelector';
 import { toINR } from '../utils/priceUtils';
-import { StarRating } from '../components/ui/StarRating';
 
 export const RoomDetailPage = () => {
   const { slug } = useParams();
@@ -198,26 +197,6 @@ export const RoomDetailPage = () => {
                 </ul>
               </div>
             </div>
-
-            {selectedRoom.reviews?.length > 0 && (
-              <div>
-                <h2 className="mb-4 font-display text-2xl text-gold">Guest Reviews</h2>
-                <div className="space-y-3">
-                  {selectedRoom.reviews.slice(0, 3).map((review) => (
-                    <div key={review.id} className="rounded-lg border border-gold/20 bg-black/20 p-3">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <p className="font-medium text-ivory">{review.title}</p>
-                          <p className="text-xs text-ivory/60">by {review.user?.firstName} {review.user?.lastName}</p>
-                        </div>
-                        <StarRating rating={review.rating} />
-                      </div>
-                      <p className="mt-2 text-sm text-ivory/80">{review.comment}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           <aside className="sticky top-24 h-fit rounded-xl border border-gold/30 bg-black/20 p-5">
