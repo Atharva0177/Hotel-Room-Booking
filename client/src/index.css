@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #1a1410;
+  --gold: #c9a96e;
+  --ivory: #f5f0e8;
+  --burgundy: #6b2737;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  font-family: 'Jost', sans-serif;
+  color: var(--ivory);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(107, 39, 55, 0.22), transparent 40%),
+    radial-gradient(circle at 80% 10%, rgba(201, 169, 110, 0.18), transparent 35%),
+    linear-gradient(140deg, #120f0c, var(--bg));
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 36vw;
+  height: 36vw;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  left: -12vw;
+  top: 18vh;
+  background: rgba(107, 39, 55, 0.55);
+  animation: driftOne 18s ease-in-out infinite;
+}
+
+body::after {
+  right: -12vw;
+  top: 42vh;
+  background: rgba(201, 169, 110, 0.4);
+  animation: driftTwo 20s ease-in-out infinite;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.premium-card::after {
+  content: '';
+  position: absolute;
+  inset: -120%;
+  transform: rotate(20deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine 9s linear infinite;
+  pointer-events: none;
+}
+
+.premium-panel {
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    linear-gradient(125deg, rgba(14, 12, 10, 0.9), rgba(40, 22, 18, 0.62));
+  backdrop-filter: blur(10px);
+}
+
+.hero-surface {
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.45);
+}
+
+.float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-70%) rotate(20deg); }
+  100% { transform: translateX(70%) rotate(20deg); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes driftOne {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(3vw, -2vh, 0); }
+}
+
+@keyframes driftTwo {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-3vw, 2vh, 0); }
+}
