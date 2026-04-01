@@ -10,16 +10,16 @@ export const AdminGuests = () => {
   }, []);
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[200px_1fr] pb-16">
+    <section className="grid gap-2 sm:gap-3 md:gap-6 grid-cols-1 md:grid-cols-[auto_1fr] pb-16 px-2 sm:px-3 md:px-4 w-full overflow-x-hidden">
       <AdminSidebar />
-      <div>
-        <h1 className="font-display text-5xl text-gold">Guests</h1>
-        <div className="mt-4 overflow-x-auto rounded-xl border border-gold/30">
-          <table className="min-w-full text-sm">
-            <thead className="bg-gold/10"><tr><th className="px-3 py-2 text-left">Name</th><th className="px-3 py-2 text-left">Email</th><th className="px-3 py-2 text-left">Total Bookings</th></tr></thead>
+      <div className="min-w-0">
+        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gold">Guests</h1>
+        <div className="mt-2 sm:mt-3 md:mt-4 overflow-x-auto rounded-lg border border-gold/30">
+          <table className="min-w-full text-xs sm:text-sm">
+            <thead className="bg-gold/10"><tr><th className="px-2 sm:px-3 py-2 text-left">Name</th><th className="px-2 sm:px-3 py-2 text-left">Email</th><th className="px-2 sm:px-3 py-2 text-left">Bookings</th></tr></thead>
             <tbody>
               {rows.map((item) => (
-                <tr key={item.id} className="border-t border-gold/20"><td className="px-3 py-2">{item.firstName} {item.lastName}</td><td className="px-3 py-2">{item.email}</td><td className="px-3 py-2">{item.bookings?.length || 0}</td></tr>
+                <tr key={item.id} className="border-t border-gold/20"><td className="px-2 sm:px-3 py-2">{item.firstName} {item.lastName}</td><td className="px-2 sm:px-3 py-2 truncate">{item.email}</td><td className="px-2 sm:px-3 py-2">{item.bookings?.length || 0}</td></tr>
               ))}
             </tbody>
           </table>

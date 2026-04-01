@@ -28,16 +28,16 @@ export const AdminSettings = () => {
   };
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[200px_1fr] pb-16">
+    <section className="grid gap-2 sm:gap-3 md:gap-6 grid-cols-1 md:grid-cols-[auto_1fr] pb-16 px-2 sm:px-3 md:px-4 w-full overflow-x-hidden">
       <AdminSidebar />
-      <form onSubmit={onSubmit} className="space-y-4 rounded-xl border border-gold/30 bg-black/20 p-6">
-        <h1 className="font-display text-5xl text-gold">Settings</h1>
-        <label className="block text-sm text-ivory/80">
+      <form onSubmit={onSubmit} className="space-y-2 sm:space-y-3 md:space-y-4 rounded-lg border border-gold/30 bg-black/20 p-2 sm:p-3 md:p-6 min-w-0">
+        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gold">Settings</h1>
+        <label className="block text-xs sm:text-sm text-ivory/80">
           Navbar Brand
           <input
             value={form.navbarBrand || ''}
             onChange={(e) => setForm((v) => ({ ...v, navbarBrand: e.target.value }))}
-            className="mt-1 block w-full rounded border border-gold/30 bg-transparent px-3 py-2"
+            className="mt-1 block w-full rounded border border-gold/30 bg-transparent px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm"
           />
         </label>
 

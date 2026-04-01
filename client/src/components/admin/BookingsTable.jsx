@@ -33,14 +33,14 @@ export const BookingsTable = ({ rows = [], busyId, onStatusChange, onCancel, onD
             <td className="px-3 py-2">{row.paymentStatus}</td>
             <td className="px-3 py-2">₹{Math.round(row.finalPrice)}</td>
             <td className="px-3 py-2">
-              <div className="flex gap-2">
-                <button onClick={() => onCancel(row.id)} disabled={busyId === row.id || row.status === 'CANCELLED'} className="rounded border border-gold/40 px-2 py-1 text-xs">
+              <div className="flex flex-col gap-1">
+                <button onClick={() => onCancel(row.id)} disabled={busyId === row.id || row.status === 'CANCELLED'} className="rounded border border-gold/40 px-2 py-1 text-xs whitespace-nowrap hover:bg-gold/10 transition disabled:opacity-50">
                   Cancel
                 </button>
-                <button onClick={() => onDownloadInvoice(row)} disabled={busyId === row.id} className="rounded border border-gold/40 px-2 py-1 text-xs">
-                  Invoice PDF
+                <button onClick={() => onDownloadInvoice(row)} disabled={busyId === row.id} className="rounded border border-gold/40 px-2 py-1 text-xs whitespace-nowrap hover:bg-gold/10 transition disabled:opacity-50">
+                  Invoice
                 </button>
-                <button onClick={() => onDelete(row.id)} disabled={busyId === row.id} className="rounded border border-red-400/40 px-2 py-1 text-xs text-red-300">
+                <button onClick={() => onDelete(row.id)} disabled={busyId === row.id} className="rounded border border-red-400/40 px-2 py-1 text-xs text-red-300 whitespace-nowrap hover:bg-red-500/10 transition disabled:opacity-50">
                   Delete
                 </button>
               </div>

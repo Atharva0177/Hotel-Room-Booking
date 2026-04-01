@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
+import { AdminSidebar } from '../../components/admin/AdminSidebar';
 import aboutService from '../../services/aboutService';
 
 export const AdminAbout = () => {
@@ -70,13 +71,15 @@ export const AdminAbout = () => {
   }
 
   return (
+    <section className="grid gap-2 sm:gap-3 md:gap-6 grid-cols-1 md:grid-cols-[auto_1fr] pb-16 px-2 sm:px-3 md:px-4 w-full overflow-x-hidden">
+      <AdminSidebar />
     <motion.div
-      className="space-y-6"
+      className="space-y-2 sm:space-y-4 md:space-y-6 min-w-0"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-display text-gold">Edit About Page</h2>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-2 sm:gap-0">
+        <h2 className="text-lg sm:text-2xl font-display text-gold">Edit About Page</h2>
         <button
           onClick={handleSave}
           disabled={saving}

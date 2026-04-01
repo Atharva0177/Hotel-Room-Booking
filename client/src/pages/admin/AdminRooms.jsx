@@ -167,10 +167,10 @@ export const AdminRooms = () => {
   };
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[200px_1fr] pb-16">
+    <section className="grid gap-2 sm:gap-3 md:gap-6 grid-cols-1 md:grid-cols-[auto_1fr] pb-16 px-2 sm:px-3 md:px-4 w-full overflow-x-hidden">
       <AdminSidebar />
-      <div className="space-y-5">
-        <h1 className="font-display text-5xl text-gold">Manage Rooms</h1>
+      <div className="space-y-2 sm:space-y-3 md:space-y-4 min-w-0">
+        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gold">Manage Rooms</h1>
         <form onSubmit={onSubmit} className="grid gap-3 rounded-xl border border-gold/30 bg-black/20 p-4 md:grid-cols-2">
           <input value={form.name} onChange={(e) => setForm((v) => ({ ...v, name: e.target.value }))} placeholder="Room Name" required className="rounded border border-gold/30 bg-transparent px-3 py-2" />
           <select value={form.type} onChange={(e) => setForm((v) => ({ ...v, type: e.target.value }))} className="rounded border border-gold/30 bg-auburn px-3 py-2">

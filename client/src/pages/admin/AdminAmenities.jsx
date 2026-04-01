@@ -135,9 +135,9 @@ export const AdminAmenities = () => {
   };
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[200px_1fr] pb-16">
+    <section className="grid gap-2 sm:gap-3 md:gap-6 grid-cols-1 md:grid-cols-[auto_1fr] pb-16 px-2 sm:px-3 md:px-4 w-full overflow-x-hidden">
       <AdminSidebar />
-      <div className="space-y-5">
+      <div className="space-y-2 sm:space-y-3 md:space-y-4 min-w-0">
         <h1 className="font-display text-5xl text-gold">Manage Amenities</h1>
         <form onSubmit={onSubmit} className="grid gap-3 rounded-xl border border-gold/30 bg-black/20 p-4 md:grid-cols-2">
           <input
@@ -228,22 +228,24 @@ export const AdminAmenities = () => {
                     </button>
                   </td>
                   <td className="px-4 py-3 text-center">
-                    <button
-                      type="button"
-                      onClick={() => onEdit(amenity)}
-                      disabled={busyId === amenity.id}
-                      className="text-gold hover:text-gold/80 transition mr-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onDelete(amenity.id)}
-                      disabled={busyId === amenity.id}
-                      className="text-red-400 hover:text-red-300 transition"
-                    >
-                      Delete
-                    </button>
+                    <div className="flex flex-col gap-1 items-center">
+                      <button
+                        type="button"
+                        onClick={() => onEdit(amenity)}
+                        disabled={busyId === amenity.id}
+                        className="text-gold hover:text-gold/80 transition text-xs rounded px-2 py-1 hover:bg-gold/10 disabled:opacity-50"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => onDelete(amenity.id)}
+                        disabled={busyId === amenity.id}
+                        className="text-red-400 hover:text-red-300 transition text-xs rounded px-2 py-1 hover:bg-red-500/10 disabled:opacity-50"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
