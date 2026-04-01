@@ -25,7 +25,21 @@ const aboutRoutes = require('./routes/about.routes');
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+
+// CORS configuration that handles trailing slashes
+const clientUrl = (process.env.CLIENT_URL || '').replace(/\/$/, ''); // Remove trailing slash
+app.use(cors({
+  origin: (origin, callback) => {
+    const normalizedOrigin = (origin || '').replace(/\/$/, '');
+    if (!origin || normalizedOrigin === clientUrl) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'));
+    }
+  },
+  credentials: true,
+}));
+
 app.use(morgan('dev'));
 app.use(compression());
 app.use(cookieParser());
