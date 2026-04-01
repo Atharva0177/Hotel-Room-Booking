@@ -103,31 +103,31 @@ export const RoomDetailPage = () => {
               <p className="mt-4 text-lg text-ivory/90">{selectedRoom.longDesc}</p>
             </div>
 
-            <div className="grid gap-3 rounded-xl border border-gold/30 bg-black/20 p-4 sm:grid-cols-2 lg:grid-cols-5">
-              <div className="flex flex-col items-center gap-2 py-2">
-                <Users className="h-6 w-6 text-gold" />
-                <p className="text-xs text-ivory/70">Max Guests</p>
-                <p className="font-semibold text-ivory">{selectedRoom.maxGuests}</p>
+            <div className="grid gap-2 grid-cols-2 sm:gap-3 rounded-xl border border-gold/30 bg-black/20 p-3 sm:p-4 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
+                <Users className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
+                <p className="text-[10px] sm:text-xs text-ivory/70">Max Guests</p>
+                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.maxGuests}</p>
               </div>
-              <div className="flex flex-col items-center gap-2 py-2">
-                <Bed className="h-6 w-6 text-gold" />
-                <p className="text-xs text-ivory/70">Bed Type</p>
-                <p className="font-semibold text-ivory">{selectedRoom.bedType}</p>
+              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
+                <Bed className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
+                <p className="text-[10px] sm:text-xs text-ivory/70">Bed Type</p>
+                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.bedType}</p>
               </div>
-              <div className="flex flex-col items-center gap-2 py-2">
-                <Maximize2 className="h-6 w-6 text-gold" />
-                <p className="text-xs text-ivory/70">Size</p>
-                <p className="font-semibold text-ivory">{selectedRoom.size} sq ft</p>
+              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
+                <Maximize2 className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
+                <p className="text-[10px] sm:text-xs text-ivory/70">Size</p>
+                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.size} sq ft</p>
               </div>
-              <div className="flex flex-col items-center gap-2 py-2">
-                <Eye className="h-6 w-6 text-gold" />
-                <p className="text-xs text-ivory/70">View</p>
-                <p className="font-semibold text-ivory text-center">{selectedRoom.viewType}</p>
+              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
+                <Eye className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
+                <p className="text-[10px] sm:text-xs text-ivory/70">View</p>
+                <p className="text-sm sm:font-semibold text-ivory text-center">{selectedRoom.viewType}</p>
               </div>
-              <div className="flex flex-col items-center gap-2 py-2">
-                <Users className="h-6 w-6 text-gold" />
-                <p className="text-xs text-ivory/70">Units</p>
-                <p className="font-semibold text-ivory">{selectedRoom.inventoryCount || 1}</p>
+              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
+                <Users className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
+                <p className="text-[10px] sm:text-xs text-ivory/70">Units</p>
+                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.inventoryCount || 1}</p>
               </div>
             </div>
 
