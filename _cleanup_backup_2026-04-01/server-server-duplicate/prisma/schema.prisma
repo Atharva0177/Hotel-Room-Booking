@@ -1,0 +1,221 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String         @unique
+  password      String
+  phone         String?
+  avatar        String?
+  role          Role           @default(GUEST)
+  nationality   String?
+  idProofUrl    String?
+  newsletter    Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  bookings      Booking[]
+  reviews       Review[]
+  refreshTokens RefreshToken[]
+
+  @@index([email])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Room {
+  id            String   @id @default(uuid())
+  name          String
+  slug          String   @unique
+  type          RoomType
+  description   String
+  longDesc      String
+  pricePerNight Float
+  maxGuests     Int
+  inventoryCount Int      @default(1)
+  bedType       String
+  size          Float
+  floor         Int
+  viewType      String
+  images        String[]
+  amenities     String[]
+  signatureExperiences String[] @default([])
+  checkInTime   String?
+  checkOutTime  String?
+  cancellationPolicy String?
+  paymentPolicy String?
+  guestAssurancePoints String[] @default([])
+  isAvailable   Boolean  @default(true)
+  isFeatured    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  bookings      Booking[]
+  reviews       Review[]
+
+  @@index([type])
+}
+
+model Booking {
+  id              String        @id @default(uuid())
+  bookingCode     String        @unique
+  userId          String
+  roomId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room            Room          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  checkIn         DateTime
+  checkOut        DateTime
+  nights          Int
+  adults          Int
+  children        Int
+  roomsBooked     Int           @default(1)
+  totalPrice      Float
+  taxAmount       Float
+  finalPrice      Float
+  status          BookingStatus @default(PENDING)
+  paymentStatus   PaymentStatus @default(UNPAID)
+  stripePaymentId String?
+  specialRequests String?
+  guestName       String
+  guestEmail      String
+  guestPhone      String
+  invoiceUrl      String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  reviews         Review[]
+
+  @@index([userId])
+  @@index([roomId])
+  @@index([checkIn])
+  @@index([status])
+}
+
+model Review {
+  id          String   @id @default(uuid())
+  userId      String
+  roomId      String
+  bookingId   String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room        Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  booking     Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  rating      Int
+  title       String
+  comment     String
+  isApproved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Offer {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  discount    Float
+  code        String   @unique
+  validFrom   DateTime
+  validUntil  DateTime
+  isActive    Boolean  @default(true)
+  minNights   Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model Amenity {
+  id        String   @id @default(uuid())
+  title     String
+  description String
+  hours     String
+  imageUrl  String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+model GalleryImage {
+  id        String   @id @default(uuid())
+  category  String
+  imageUrl  String
+  title     String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([order])
+}
+
+model About {
+  id String @id @default(uuid())
+  heritageTagline String @default("Our Heritage")
+  heritageTitle String @default("About Aurelia Grand")
+  heritageDescription String
+  storyTitle String @default("Our Story")
+  storyContent String
+  awardsTitle String @default("Awards & Certifications")
+  awards String // JSON array
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  GUEST
+  ADMIN
+}
+
+enum RoomType {
+  STANDARD
+  DELUXE
+  SUITE
+  PRESIDENTIAL
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CHECKED_IN
+  CHECKED_OUT
+  CANCELLED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDED
+}
