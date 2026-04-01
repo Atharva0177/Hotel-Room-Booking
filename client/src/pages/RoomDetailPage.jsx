@@ -103,44 +103,44 @@ export const RoomDetailPage = () => {
               <p className="mt-4 text-lg text-ivory/90">{selectedRoom.longDesc}</p>
             </div>
 
-            <div className="grid gap-2 grid-cols-2 sm:gap-3 rounded-xl border border-gold/30 bg-black/20 p-3 sm:p-4 sm:grid-cols-2 lg:grid-cols-5">
-              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
-                <Users className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
-                <p className="text-[10px] sm:text-xs text-ivory/70">Max Guests</p>
-                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.maxGuests}</p>
+            <div className="grid gap-2 grid-cols-3 sm:grid-cols-5 lg:grid-cols-5">
+              <div className="flex flex-col items-center gap-1 rounded-lg border border-gold/25 bg-black/40 p-2">
+                <Users className="h-4 w-4 text-gold" />
+                <p className="text-[9px] text-ivory/70 text-center">Max Guests</p>
+                <p className="text-xs sm:text-sm font-medium text-ivory">{selectedRoom.maxGuests}</p>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
-                <Bed className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
-                <p className="text-[10px] sm:text-xs text-ivory/70">Bed Type</p>
-                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.bedType}</p>
+              <div className="flex flex-col items-center gap-1 rounded-lg border border-gold/25 bg-black/40 p-2">
+                <Bed className="h-4 w-4 text-gold" />
+                <p className="text-[9px] text-ivory/70 text-center">Bed Type</p>
+                <p className="text-xs sm:text-sm font-medium text-ivory text-center">{selectedRoom.bedType}</p>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
-                <Maximize2 className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
-                <p className="text-[10px] sm:text-xs text-ivory/70">Size</p>
-                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.size} sq ft</p>
+              <div className="flex flex-col items-center gap-1 rounded-lg border border-gold/25 bg-black/40 p-2">
+                <Maximize2 className="h-4 w-4 text-gold" />
+                <p className="text-[9px] text-ivory/70 text-center">Size</p>
+                <p className="text-xs sm:text-sm font-medium text-ivory">{selectedRoom.size}</p>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
-                <Eye className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
-                <p className="text-[10px] sm:text-xs text-ivory/70">View</p>
-                <p className="text-sm sm:font-semibold text-ivory text-center">{selectedRoom.viewType}</p>
+              <div className="flex flex-col items-center gap-1 rounded-lg border border-gold/25 bg-black/40 p-2">
+                <Eye className="h-4 w-4 text-gold" />
+                <p className="text-[9px] text-ivory/70 text-center">View</p>
+                <p className="text-xs sm:text-sm font-medium text-ivory text-center line-clamp-1">{selectedRoom.viewType}</p>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-2 py-1 sm:py-2">
-                <Users className="h-5 sm:h-6 w-5 sm:w-6 text-gold" />
-                <p className="text-[10px] sm:text-xs text-ivory/70">Units</p>
-                <p className="text-sm sm:font-semibold text-ivory">{selectedRoom.inventoryCount || 1}</p>
+              <div className="flex flex-col items-center gap-1 rounded-lg border border-gold/25 bg-black/40 p-2">
+                <Users className="h-4 w-4 text-gold" />
+                <p className="text-[9px] text-ivory/70 text-center">Units</p>
+                <p className="text-xs sm:text-sm font-medium text-ivory">{selectedRoom.inventoryCount || 1}</p>
               </div>
             </div>
 
             {selectedRoom.amenities?.length > 0 && (
               <div>
-                <h2 className="mb-3 font-display text-2xl text-gold">Amenities</h2>
-                <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                <h2 className="mb-2 font-display text-xl sm:text-2xl text-gold">Amenities</h2>
+                <div className="grid gap-1.5 grid-cols-3 sm:grid-cols-4 md:grid-cols-5">
                   {selectedRoom.amenities.map((amenity) => {
                     const AmenityIcon = getAmenityIcon(amenity);
                     return (
-                    <div key={amenity} className="flex items-center gap-2 rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
+                    <div key={amenity} title={amenity} className="flex flex-col items-center gap-1 rounded-lg border border-gold/25 bg-gold/5 p-1.5 hover:bg-gold/10 transition">
                       <AmenityIcon className="h-4 w-4 text-gold" />
-                      <span className="text-sm text-ivory/90">{amenity}</span>
+                      <span className="text-[9px] text-ivory/90 text-center line-clamp-2">{amenity}</span>
                     </div>
                     );
                   })}
